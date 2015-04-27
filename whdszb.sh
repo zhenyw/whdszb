@@ -22,6 +22,23 @@ done
 
 [ -z $month ] && help
 
+$(which wget > /dev/null)
+FOUND_WGET=$?
+$(which pdftk > /dev/null)
+FOUND_PDFTK=$?
+
+if [ $FOUND_WGET -ne 0 ]
+then
+    echo "Required wget not installed."
+    exit 1
+fi
+
+if [ $FOUND_PDFTK -ne 0 ]
+then
+    echo "Required pdftk not installed."
+    exit 1
+fi
+
 month=$(printf "%02d" $month)
 
 if [ -z $year ]
